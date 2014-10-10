@@ -21,7 +21,7 @@ info.addTo(map);
 
 // get color depending on population density value
 function getColor(d) {
-    return d > 4000 ? '#800026' :
+    return d > 3000 ? '#800026' :
             d > 1500 ? '#BD0026' :
             d > 1000 ? '#E31A1C' :
             d > 500 ? '#FC4E2A' :
@@ -72,9 +72,9 @@ function zoomToFeature(e) {
 
 function onEachFeature(feature, layer) {
     layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
+//        mouseover: highlightFeature,
+//        mouseout: resetHighlight,
+//        click: zoomToFeature
     });
 }
 
