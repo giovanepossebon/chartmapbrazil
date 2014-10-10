@@ -1,5 +1,5 @@
 var map = L.map('map', {zoomControl:false, }).setView([-15.8, -51], 4);
-L.tileLayer('http://{s}.tiles.mapbox.com/v3/giovanepossebon.jnhj7ngk/{z}/{x}/{y}.png', {
+L.tileLayer('http://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 }).addTo(map);
 L.geoJson(statesData).addTo(map);
 
