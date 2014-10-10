@@ -1,7 +1,5 @@
-var map = L.map('map').setView([-15.8, -51], 4);
-L.tileLayer('http://{s}.tiles.mapbox.com/v3/{insert-id}/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18
+var map = L.map('map', {zoomControl:false, }).setView([-15.8, -51], 4);
+L.tileLayer('http://{s}.tiles.mapbox.com/v3/giovanepossebon.jnhj7ngk/{z}/{x}/{y}.png', {
 }).addTo(map);
 L.geoJson(statesData).addTo(map);
 
@@ -23,12 +21,12 @@ info.addTo(map);
 
 // get color depending on population density value
 function getColor(d) {
-    return d > 1000 ? '#800026' :
-            d > 500 ? '#BD0026' :
-            d > 200 ? '#E31A1C' :
-            d > 100 ? '#FC4E2A' :
-            d > 50 ? '#FD8D3C' :
-            d > 20 ? '#FEB24C' :
+    return d > 4000 ? '#800026' :
+            d > 1500 ? '#BD0026' :
+            d > 1000 ? '#E31A1C' :
+            d > 500 ? '#FC4E2A' :
+            d > 100 ? '#FD8D3C' :
+            d > 50 ? '#FEB24C' :
             d > 10 ? '#FED976' :
             '#FFEDA0';
 }
@@ -79,6 +77,11 @@ function onEachFeature(feature, layer) {
         click: zoomToFeature
     });
 }
+
+map.dragging.disable();
+map.touchZoom.disable();
+map.doubleClickZoom.disable();
+map.scrollWheelZoom.disable();
 
 geojson = L.geoJson(statesData, {
     style: style,
