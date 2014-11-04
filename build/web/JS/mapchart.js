@@ -1,5 +1,5 @@
 var map = L.map('map', {zoomControl:false, }).setView([-15.8, -51], 4);
-L.tileLayer('http://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+L.tileLayer('http://{s}.tiles.mapbox.com/v3/giovanepossebon.jnhj7ngk/{z}/{x}/{y}.png', {
 }).addTo(map);
 L.geoJson(statesData).addTo(map);
 
@@ -19,35 +19,12 @@ info.update = function (props) {
 
 info.addTo(map);
 
-// get color depending on population density value
-function getColor(d) {
-    return d > 3000 ? '#800026' :
-            d > 1500 ? '#BD0026' :
-            d > 1000 ? '#E31A1C' :
-            d > 500 ? '#FC4E2A' :
-            d > 100 ? '#FD8D3C' :
-            d > 50 ? '#FEB24C' :
-            d > 10 ? '#FED976' :
-            '#FFEDA0';
-}
-
-function style(feature) {
-    return {
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.7,
-        fillColor: getColor(feature.properties.UF)
-    };
-}
-
 function highlightFeature(e) {
     var layer = e.target;
 
     layer.setStyle({
         weight: 5,
-        color: '#666',
+        color: '#FFFFFF',
         dashArray: '',
         fillOpacity: 0.7
     });
@@ -57,6 +34,26 @@ function highlightFeature(e) {
     }
 
     info.update(layer.feature.properties);
+}
+
+
+// get color depending on population density value
+function getColor(d) {
+    return  d > 10000 ? '#053664' :
+            d > 200 ? '#A2A636' :
+            d > 50 ? '#FCBA05' :
+            '#C9193A';
+}
+
+function style(feature) {
+    return {
+        opacity: 0.9,
+        weight: 2,
+        color: 'white',
+        dashArray: '',
+        fillOpacity: 0.7,
+        fillColor: getColor(feature.properties.UF)
+    };
 }
 
 var geojson;
@@ -72,8 +69,8 @@ function zoomToFeature(e) {
 
 function onEachFeature(feature, layer) {
     layer.on({
-//        mouseover: highlightFeature,
-//        mouseout: resetHighlight,
+        mouseover: highlightFeature,
+        mouseout: resetHighlight
 //        click: zoomToFeature
     });
 }
